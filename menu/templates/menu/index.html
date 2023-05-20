@@ -1,22 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-{% load static%}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Salón Selecto</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="vali_index.js"></script>
+    <script src="{% static 'js/vali_index.js' %}"></script>
   </head>
   <body>
     <section class="wrapper">
       <div class="form signup">
         <header>Iniciar sesión</header>
-        <form action="#">
+        <form method="post" action="#">
           <input type="email" placeholder="Correo" required />
-          <input type="password" placeholder="Contraseña" minlength="10" maxlength="14" required  />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            minlength="10"
+            maxlength="14"
+            required
+          />
           <a href="recuperacion.html">¿Olvidaste tu contraseña?</a>
           <button type="submit" formaction="entorno.html">Ingresar</button>
         </form>
@@ -24,10 +30,12 @@
 
       <div class="form login">
         <header>Registrarse</header>
-        <form action="#">
-          <input type="email" placeholder="Correo" required />           
-          <p>   Se enviara un codigo de activación </p>
-          <button type="submit" formaction="val_nuevo_usuario.html">Enviar codigo</button>
+        <form method="post" action="#">
+          <input type="email" placeholder="Correo" required />
+          <p>Se enviará un código de activación</p>
+          <button type="submit" formaction="val_nuevo_usuario.html">
+            Enviar código
+          </button>
         </form>
       </div>
 
@@ -46,5 +54,3 @@
     </section>
   </body>
 </html>
-
-
