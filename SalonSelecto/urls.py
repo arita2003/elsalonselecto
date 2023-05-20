@@ -18,10 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from menu.views import recuperacion, recuperacion2, recuperacion3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('menu.urls')),
+    path('recuperacion/', recuperacion, name="recuperacion"),
+    path('recuperacion2/', recuperacion2, name="recuperacion2"),
+    path('recuperacion3/', recuperacion3, name="recuperacion3")
 ]
 
 if settings.DEBUG:
