@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,19 +75,19 @@ WSGI_APPLICATION = 'SalonSelecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/orcl',
-        'USER': 'salonselecto',
-        'PASSWORD': 'salonselecto',
-        'TEST':{
-            'USER': 'default_test',
-            'TBLSPACE': 'default_test_tbls',
-            'TBLSPACE_TMP': 'default_test_tbls_tmp',
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': '127.0.0.1:1521/orcl',
+#         'USER': 'salonselecto',
+#         'PASSWORD': 'salonselecto',
+#         'TEST':{
+#             'USER': 'default_test',
+#             'TBLSPACE': 'default_test_tbls',
+#             'TBLSPACE_TMP': 'default_test_tbls_tmp',
+#         },
+#     }
+# }
 
 
 
@@ -126,6 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
