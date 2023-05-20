@@ -23,9 +23,9 @@ from menu.views import recuperacion, recuperacion2, recuperacion3
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('menu.urls')),
-    path('recuperacion/', recuperacion, name="recuperacion"),
-    path('recuperacion2/', recuperacion2, name="recuperacion2"),
-    path('recuperacion3/', recuperacion3, name="recuperacion3")
+    path('recuperacion.html', recuperacion, name="recuperacion"),
+    path('recuperacion2.html', recuperacion2, name="recuperacion2"),
+    path('recuperacion3.html', recuperacion3, name="recuperacion3")
 ]
 
 if settings.DEBUG:
