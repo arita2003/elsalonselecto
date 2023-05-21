@@ -25,7 +25,8 @@ urlpatterns = [
     path('', include('menu.urls')),
     path('recuperacion.html', recuperacion, name="recuperacion"),
     path('recuperacion2.html', recuperacion2, name="recuperacion2"),
-    path('recuperacion3.html', recuperacion3, name="recuperacion3")
+    path('recuperacion3.html', recuperacion3, name="recuperacion3"),
+    path('entorno.html', recuperacion3, name="entorno")
 ]
 
 if settings.DEBUG:
