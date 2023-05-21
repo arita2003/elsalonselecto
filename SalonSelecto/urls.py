@@ -29,21 +29,18 @@ urlpatterns = [
     path('entorno.html', entorno, name="entorno"),
     path('carrito.html', carrito, name="carrito"),
     path('form.html', form, name="form"),
-    path('agregar_platillos', agregar_platillos, name="agregar_platillos"),
-    path(' platillos',  platillos, name=" platillos"),
-    path('eliminar_platillos',eliminar_platillos, name="eliminar_platillos"),
-    path('perfil',perfil, name="perfil"),
-    path('editar_perfil', editar_perfil, name="editar_perfil"),
-    path('pas_nuevo_usuario', pas_nuevo_usuario, name="pas_nuevo_usuario"),
-    path('val_nuevo_usuario', val_nuevo_usuario, name="val_nuevo_usuario")
-    
-    
+    path('agregar_platillos.html', agregar_platillos, name="agregar_platillos"),
+    path('platillos.html', platillos, name=" platillos"),
+    path('eliminar_platillos.html', eliminar_platillos, name="eliminar_platillos"),
+    path('perfil.html', perfil, name="perfil"),
+    path('editar_perfil.html', editar_perfil, name="editar_perfil"),
+    path('pas_nuevo_usuario.html', pas_nuevo_usuario, name="pas_nuevo_usuario"),
+    path('val_nuevo_usuario.html', val_nuevo_usuario, name="val_nuevo_usuario")
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
 
 

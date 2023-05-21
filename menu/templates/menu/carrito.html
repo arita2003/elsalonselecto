@@ -7,7 +7,7 @@
   <title>El Salón Selecto</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'>
-  <link rel="stylesheet" href="./style_entorno.css">
+  <link rel="stylesheet" href="{% static 'menu\css\style_entorno.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 </head>
@@ -73,7 +73,7 @@
       <div class="header">
         <div class="user-menu">
           <div class="user-info">
-            <img src="foto_perfil.jpg" alt="Foto de perfil del usuario">
+            <img src="{% static 'menu/img/foto_perfil.jpg' %}" alt="Foto de perfil del usuario">
             <p class="user-name">Anderson</p>
             <div class="arrow-down"></div>
           </div>
