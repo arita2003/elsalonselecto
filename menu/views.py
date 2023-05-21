@@ -16,8 +16,6 @@ def recuperacion2(request):
 def recuperacion3(request):
     return render(request,'menu/recuperacion3.html')
 
-def entorno(request):
-    return render(request,'menu/entorno.html')
 
 def carrito(request):
     return render(request,'menu/carrito.html')
