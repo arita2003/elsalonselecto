@@ -336,7 +336,7 @@ body:before {
 }
 
 .main-blog {
-  background-image: url("imagen_principal.jpg");
+  background-image: url("{% static 'menu/img/imagen_principal.jpg' %}");
   background-size: 80%;
   background-position-x: 235px;
   background-position-y: -100px;
@@ -356,7 +356,7 @@ body:before {
 .main-blog+.main-blog {
   margin-left: 20px;
   width: 35%;
-  background-image: url(segunda_imagen.jpg);
+  background-image: url("{% static 'menu/img/segunda_imagen.jpg' %}");
   background-color: unset;
   background-position-x: 0;
   background-size: 139%;
