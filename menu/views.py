@@ -22,6 +22,8 @@ def carrito(request):
 
 def form(request):
     return render(request,'menu/form.html')
+def carrito(request):
+    return render(request,'menu/carrito.html')
 
 def agregar_platillos(request):
     return render(request,'menu/agregar_platillos.html')
@@ -43,3 +45,7 @@ def pas_nuevo_usuario(request):
 
 def val_nuevo_usuario(request):
     return render(request,'menu/val_nuevo_usuario.html')
+
+def nosotros(request):
+    return render(request,'menu/nosotros.html')
+
