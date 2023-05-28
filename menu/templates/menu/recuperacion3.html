@@ -21,6 +21,7 @@
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="#">
+                {% csrf_token %}
                 <div class="input-container">
                     <span>Cambiar contraseña.</span>
                     <input type="password" placeholder="Nueva contraseña" id="nueva-contraseña" minlength="10" maxlength="14" onkeydown="validarInput(event)" required />
