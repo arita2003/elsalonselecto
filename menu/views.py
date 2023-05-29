@@ -4,6 +4,26 @@ from django.shortcuts import render
 def index(request):
     return render(request,'menu/index.html')
 
+def login(request):
+    if request.method == 'POST':
+        # Procesa los datos del formulario de inicio de sesión
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        
+    return render(request, 'index.html')
+
+def register(request):
+    if request.method == 'POST':
+        # Procesa los datos del formulario de registro
+        email = request.POST.get('email')
+        
+        
+    return render(request, 'index.html')
+
+
+
+
 def entorno(request):
     return render(request,'menu/entorno.html')
 
@@ -43,8 +63,35 @@ def editar_perfil(request):
 def pas_nuevo_usuario(request):
     return render(request,'menu/pas_nuevo_usuariohtml')
 
+
+def mi_formulario(request):
+    if request.method == 'POST':
+        # Procesar los datos enviados por el formulario
+        contraseña = request.POST.get('contraseña')
+        confi_contraseña = request.POST.get('confi-contraseña')
+        
+        return render(request, 'crearnombre.html')
+    else:
+        return render(request, 'pas_nuevo_usuario.html')
+
+
+
 def val_nuevo_usuario(request):
     return render(request,'menu/val_nuevo_usuario.html')
+
+
+
+def validacion_nuevo_usuario(request):
+    
+    if request.method == 'POST':
+        # Procesa los datos del formulario de validación de correo
+        codigo_correo = request.POST.get('codigo_correo_nuevo_usuario')
+        
+        
+        
+    return render(request, 'val_nuevo_usuario.html')
+
+
 
 def nosotros(request):
     return render(request,'menu/nosotros.html')

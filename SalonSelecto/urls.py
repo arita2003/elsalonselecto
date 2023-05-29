@@ -20,6 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from menu.views import recuperacion, recuperacion2, recuperacion3,entorno,carrito,form,agregar_platillos, platillos,eliminar_platillos,perfil,editar_perfil, pas_nuevo_usuario,val_nuevo_usuario,nosotros
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('menu.urls')),
@@ -36,7 +38,9 @@ urlpatterns = [
     path('editar_perfil.html', editar_perfil, name="editar_perfil"),
     path('pas_nuevo_usuario.html', pas_nuevo_usuario, name="pas_nuevo_usuario"),
     path('val_nuevo_usuario.html', val_nuevo_usuario, name="val_nuevo_usuario"),
-    path('nosotros.html', nosotros, name="nosotros")
+    path('nosotros.html', nosotros, name="nosotros"),
+###################################################
+#vistas formularios
 
 ]
 

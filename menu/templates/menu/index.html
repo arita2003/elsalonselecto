@@ -14,7 +14,7 @@
     <section class="wrapper">
       <div class="form signup">
         <header>Iniciar sesión</header>
-        <form method="post" action="#">
+        <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <input type="email" placeholder="Correo" required />
           <input
@@ -31,7 +31,7 @@
 
       <div class="form login">
         <header>Registrarse</header>
-        <form method="post" action="#">
+        <form method="post" action="{% url 'register' %}">
           {% csrf_token %}
           <input type="email" placeholder="Correo" required />
           <p>Se enviará un código de activación</p>
