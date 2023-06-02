@@ -61,7 +61,7 @@ def editar_perfil(request):
     return render(request,'menu/editar_perfil.html')
 
 def pas_nuevo_usuario(request):
-    return render(request,'menu/pas_nuevo_usuariohtml')
+    return render(request,'menu/pas_nuevo_usuario.html')
 
 
 def mi_formulario(request):
@@ -96,3 +96,5 @@ def validacion_nuevo_usuario(request):
 def nosotros(request):
     return render(request,'menu/nosotros.html')
 
+def crearnombre(request):
+    return render(request,'menu/crearnombre.html')

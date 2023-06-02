@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from menu.views import recuperacion, recuperacion2, recuperacion3,entorno,carrito,form,agregar_platillos, platillos,eliminar_platillos,perfil,editar_perfil, pas_nuevo_usuario,val_nuevo_usuario,nosotros
+from menu.views import recuperacion, recuperacion2, recuperacion3,entorno,carrito,form,agregar_platillos, platillos,eliminar_platillos,perfil,editar_perfil, pas_nuevo_usuario,val_nuevo_usuario,nosotros,crearnombre
 
 
 
@@ -39,6 +39,7 @@ urlpatterns = [
     path('pas_nuevo_usuario.html', pas_nuevo_usuario, name="pas_nuevo_usuario"),
     path('val_nuevo_usuario.html', val_nuevo_usuario, name="val_nuevo_usuario"),
     path('nosotros.html', nosotros, name="nosotros"),
+    path('crearnombre.html', crearnombre, name="crearnombre"),
 ###################################################
 #vistas formularios
 

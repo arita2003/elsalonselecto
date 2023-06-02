@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>El Salón Selecto</title>
-    <link rel="stylesheet" href="{% static 'menu\css\recuperacion.css}" />
+    <link rel="stylesheet" href="{% static 'menu\css\recuperacion.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
         function validarInput(event) {
@@ -44,7 +44,7 @@
                     <input type="password" placeholder="Confirmar contraseña" name="confi-contraseña" id="confi-contraseña" minlength="10"
                         maxlength="14" onkeydown="validarInput(event)" required />
                 </div>
-                <button type="submit" formaction="crearnombre.html" onclick="return compararContraseñas()">Aceptar</button>
+                <button type="submit" formaction="{% url 'crearnombre' %}" onclick="return compararContraseñas()">Aceptar</button>
                 <p id="mensaje-error"></p>
             </form>
             
