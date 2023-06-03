@@ -1,38 +1,35 @@
+{% extends 'menu/PlantillaEntorno.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>El Salón Selecto</title>
-    <link  rel="stylesheet" href="{% static 'menu\css\recuperacion.css' %}"
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+{% block titulo %}
+<title>El Salón Selecto</title>
+<link  rel="stylesheet" href="{% static 'menu\css\recuperacion.css' %}">
+{% endblock titulo %}
 
-<body>
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                {% csrf_token %}
-                <div class="input-container">
-                    <span>Recuperar contraseña.</span>
-                    <input type="email" placeholder="Correo" id="email" onkeydown="validarInput(event)" required />
-                </div>
-                <button type="submit" formaction="recuperacion2.html">Enviar </button>
-                <br />
-                Se enviará un código a su correo para verificar que es usted.
-            </form>
-        </div>
+{% block body %}
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="#">
+            {% csrf_token %}
+            <div class="input-container">
+                <span>Recuperar contraseña.</span>
+                <input type="email" placeholder="Correo" id="email" onkeydown="validarInput(event)" required />
+            </div>
+            <button type="submit" formaction="recuperacion2.html">Enviar </button>
+            <br />
+            Se enviará un código a su correo para verificar que es usted.
+        </form>
     </div>
-    <script>
-        function validarInput(event) {
-            const teclaPresionada = event.key;
-            if (teclaPresionada === " " || teclaPresionada === "ñ" || teclaPresionada === "Ñ") {
-                event.preventDefault();
-            }
+</div>
+{% endblock body %}
+    
+{% block script %}
+<script>
+    function validarInput(event) {
+        const teclaPresionada = event.key;
+        if (teclaPresionada === " " || teclaPresionada === "ñ" || teclaPresionada === "Ñ") {
+            event.preventDefault();
         }
-    </script>
-</body>
-
-</html>
-
+    }
+</script>
+{% endblock script %}

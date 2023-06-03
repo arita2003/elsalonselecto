@@ -1,19 +1,14 @@
+{% extends 'menu/PlantillaEntorno.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'>
-    <link rel="stylesheet" href="{% static 'menu\css\style_entorno.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% block titulo %}
+<title>Carrito de Compras</title>
+<link rel='stylesheet' href='https://vjs.zencdn.net/5-unsafe/video-js.css'>
+<link rel="stylesheet" href="{% static 'menu\css\style_entorno.css' %}">
+{% endblock titulo %}
 
-</head>
-
-<body>
-    <div class="container">
+{% block body %}
+<div class="container">
     <div class="sidebar">
         <span class="logo">S</span>
         <a class="logo-expand" href="#">El Salón Selecto</a>
@@ -114,9 +109,10 @@ sobre nuestra página El Salon Selecto!
 
                 </p>
     </div>
+{% endblock body %}
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
-    <script src="{% static 'menu\js\script_entorno.js' %}"></script>
-
-</body>
+{% block script %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
+<script src="{% static 'menu\js\script_entorno.js' %}"></script>
+{% endblock script %}

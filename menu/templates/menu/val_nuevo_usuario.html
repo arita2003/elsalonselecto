@@ -1,29 +1,22 @@
+{% extends 'menu/PlantillaEntorno.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>El Salón Selecto</title>
-    <link rel="stylesheet" href="{% static 'menu\css\recuperacion.css' %}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+{% block titulo %}
+<title>El Salón Selecto</title>
+<link rel="stylesheet" href="{% static 'menu\css\recuperacion.css' %}"/>
+{% endblock titulo %}
 
-<body>
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form method="post" action="{% url 'validacion_nuevo_usuario' %}">
-                {% csrf_token %}
-                <div class="input-container">
-                    <span>Validar Correo.</span>
-                    <input type="text" name="codigo_correo_nuevo_usuario" placeholder="XXXX-XXXX" minlength="9" maxlength="9" pattern="\d{4}-\d{4}" required title="Debe ingresar un número de 8 dígitos separados por un guión (-). Ejemplo: 1234-5678"> 
-                </div>
-                <button type="submit" formaction="pas_nuevo_usuario.html">Confirmar</button>
-            </form>
-        </div>
+{% block body %}
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form method="post" action="{% url 'validacion_nuevo_usuario' %}">
+            {% csrf_token %}
+            <div class="input-container">
+                <span>Validar Correo.</span>
+                <input type="text" name="codigo_correo_nuevo_usuario" placeholder="XXXX-XXXX" minlength="9" maxlength="9" pattern="\d{4}-\d{4}" required title="Debe ingresar un número de 8 dígitos separados por un guión (-). Ejemplo: 1234-5678"> 
+            </div>
+            <button type="submit" formaction="pas_nuevo_usuario.html">Confirmar</button>
+        </form>
     </div>
-</body>
-
-</html>
-
-
+</div>
+{% endblock body %}
