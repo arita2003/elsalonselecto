@@ -41,6 +41,7 @@ class Comida(models.Model):
     id_comida = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
+    ingredientes = models.TextField()
     foto = models.ImageField(upload_to='comida')
     precio = models.IntegerField(default=0)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
