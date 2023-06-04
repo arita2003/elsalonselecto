@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from .models import Usuario,Comida
+
 
 # Create your views here.
 def index(request):
     return render(request,'menu/index.html')
+
 
 def login(request):
     if request.method == 'POST':
@@ -10,12 +14,25 @@ def login(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
+        # Verifica las credenciales del usuario en la base de datos
+        try:
+            usuario = Usuario.objects.get(correo=email, clave=password)
+        except Usuario.DoesNotExist:
+            response = redirect('index')
+            response.set_cookie('error_message', 'Correo o contraseña incorrectos')
+            return response
         
-    return render(request, 'index.html')
+        return redirect('entorno')  # Redirige a la página de entorno.html después del inicio de sesión exitoso
+    
+    error_message = request.COOKIES.get('error_message')
+    response = render(request, 'index.html', {'error_message': error_message})
+    response.delete_cookie('error_message')
+    return response
 
 def register(request):
     if request.method == 'POST':
         # Procesa los datos del formulario de registro
+        #usuario=usuari
         email = request.POST.get('email')
         
         
@@ -52,7 +69,11 @@ def platillos(request):
     return render(request,'menu/platillos.html')
 
 def eliminar_platillos(request):
-    return render(request,'menu/eliminar_platillos.html')
+    platillos = Comida.objects.all()
+    context = {
+        'platillos': platillos
+    }
+    return render(request, 'menu/eliminar_platillos.html', context)
 
 def perfil(request):
     return render(request,'menu/perfil.html')
