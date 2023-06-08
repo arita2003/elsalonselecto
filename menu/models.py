@@ -94,6 +94,4 @@ class Detalle(models.Model):
     def __str__(self) :
         return self.cantidad
 
-"""comandos para migrar y actualizar base de datos :
-   python manage.py makemigrations
-   python manage.py migrate """
+
