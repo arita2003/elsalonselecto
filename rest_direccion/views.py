@@ -1,37 +1,20 @@
 from django.shortcuts import render 
 from rest_framework import status
-from rest_framework.decorators import api_view 
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from menu.models import Direccion
 from .serializers import direccionSerializer
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import check_password
-from rest_framework.authtoken.models import token
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
-
-def login (request):
-    data = JASONPaser().parase(request)
-
-    username = data['username']
-    check_password = data['password']
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        return Response ("usuario invalido")
-    #validamos la contra
-    pass_valido =check_password(password,user.password)
-    if not pass_valido:
-        return Response ("password incorrecta")
-    #permitir o recuperar al token
-    token, created = Token.objects.get_or_create(user.user)
-    #print (token.key)
-    return Response(token.key)    
+@permission_classes((IsAuthenticated))   
 
 def datos_direccion(request):
 
@@ -58,3 +41,4 @@ def datos_direccion(request):
         else:
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        

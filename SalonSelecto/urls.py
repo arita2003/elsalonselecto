@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('menu.urls')),
     path('api/', include('rest_direccion.urls')),
-    path('login',login,name="login"),
+    
 ###################################################
 #vistas formularios
     
