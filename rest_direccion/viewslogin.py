@@ -1,7 +1,7 @@
 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
-from rest_framework.authtoken.models import token
+from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
@@ -25,4 +25,3 @@ def login (request):
     token, created = Token.objects.get_or_create(user.user)
     #print (token.key)
     return Response(token.key) 
-
