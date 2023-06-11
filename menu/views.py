@@ -66,7 +66,9 @@ def agregar_platillos(request):
     return render(request,'menu/agregar_platillos.html')
 
 def platillos(request):
-    return render(request,'menu/platillos.html')
+    comidas = Comida.objects.all()
+    context = {'comida': comidas}
+    return render(request, 'menu/platillos.html', context)
 
 def eliminar_platillos(request):
     platillos = Comida.objects.all()

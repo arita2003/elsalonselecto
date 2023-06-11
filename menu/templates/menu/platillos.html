@@ -84,103 +84,35 @@
       </div>
       <div class="main-container">
         <div class="menu">
+          {% for comida in comida %}
           <div class="platillo">
-            <img src="{% static 'menu/img/lasagna2.jpg' %}" alt="Platillo 1">
+            <img src="{{ comida.foto.url }}" alt="Platillo {{ forloop.counter }}">
             <div class="overlay"></div>
             <div class="informacion">
-              <h2>Lasaña</h2>
-              <p>¡Lasaña caliente y deliciosa lista para comer en minutos!</p>
-              <div class="precio">$8.500</div>
+              <h2>{{ comida.nombre }}</h2>
+              <p>{{ comida.descripcion }}</p>
+              <div class="precio">${{ comida.precio }}</div>
               <div class="rating">
-                <input type="radio" id="star5-1" name="rating-1" value="5" />
-                <label for="star5-1"></label>
-                <input type="radio" id="star4-1" name="rating-1" value="4" />
-                <label for="star4-1"></label>
-                <input type="radio" id="star3-1" name="rating-1" value="3" />
-                <label for="star3-1"></label>
-                <input type="radio" id="star2-1" name="rating-1" value="2" />
-                <label for="star2-1"></label>
-                <input type="radio" id="star1-1" name="rating-1" value="1" />
-                <label for="star1-1"></label>
+                <input type="radio" id="star5-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="5" />
+                <label for="star5-{{ forloop.counter }}"></label>
+                <input type="radio" id="star4-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="4" />
+                <label for="star4-{{ forloop.counter }}"></label>
+                <input type="radio" id="star3-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="3" />
+                <label for="star3-{{ forloop.counter }}"></label>
+                <input type="radio" id="star2-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="2" />
+                <label for="star2-{{ forloop.counter }}"></label>
+                <input type="radio" id="star1-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="1" />
+                <label for="star1-{{ forloop.counter }}"></label>
               </div>
               <p id="average-rating">Promedio de valoración: </p>
               <br><br>
               <a href="#" class="boton-comprar">Comprar</a>
             </div>
           </div>
-          <div class="platillo">
-            <img src="{% static 'menu/img/sushi.jpg' %}" alt="Platillo 1">
-            <div class="overlay"></div>
-            <div class="informacion">
-              <h2>Sushi</h2>
-              <p>Bocados exóticos de pescado fresco y arroz sabroso.</p>
-              <div class="precio">$10.000</div>
-              <div class="rating">
-                <input type="radio" id="star5-2" name="rating-2" value="5" />
-                <label for="star5-2"></label>
-                <input type="radio" id="star4-2" name="rating-2" value="4" />
-                <label for="star4-2"></label>
-                <input type="radio" id="star3-2" name="rating-2" value="3" />
-                <label for="star3-2"></label>
-                <input type="radio" id="star2-2" name="rating-2" value="2" />
-                <label for="star2-2"></label>
-                <input type="radio" id="star1-2" name="rating-2" value="1" />
-                <label for="star1-2"></label>
-              </div>
-              <p id="average-rating">Promedio de valoración: </p>
-              <br><br>
-              <a href="#" class="boton-comprar">Comprar</a>
-            </div>
-          </div>
-          <div class="platillo">
-            <img src="{% static 'menu/img/machas.jpg' %}" alt="Platillo 1">
-            <div class="overlay"></div>
-            <div class="informacion">
-              <h2>machas</h2>
-              <p>Deliciosas machas recién sacadas del mar. ¡Pruébalas ahora!</p>
-              <div class="precio">$10.000</div>
-              <div class="rating">
-                <input type="radio" id="star5-3" name="rating-3" value="5" />
-                <label for="star5-3"></label>
-                <input type="radio" id="star4-3" name="rating-3" value="4" />
-                <label for="star4-3"></label>
-                <input type="radio" id="star3-3" name="rating-3" value="3" />
-                <label for="star3-3"></label>
-                <input type="radio" id="star2-3" name="rating-3" value="2" />
-                <label for="star2-3"></label>
-                <input type="radio" id="star1-3" name="rating-3" value="1" />
-                <label for="star1-3"></label>
-              </div>
-              <p id="average-rating">Promedio de valoración: </p>
-              <br><br>
-              <a href="#" class="boton-comprar">Comprar</a>
-            </div>
-          </div>
-          <div class="platillo">
-            <img src="{% static 'menu/img/ratatouille.jpg' %}" alt="Platillo 1">
-            <div class="overlay"></div>
-            <div class="informacion">
-              <h2>Ratatouille</h2>
-              <p>Deliciosa combinación de verduras frescas en una rica salsa de tomate con hierbas frescas y queso gratinado.</p>
-              <div class="precio">$10.000</div>
-              <div class="rating">
-                <input type="radio" id="star5-4" name="rating-4" value="5" />
-                <label for="star5-4"></label>
-                <input type="radio" id="star4-4" name="rating-4" value="4" />
-                <label for="star4-4"></label>
-                <input type="radio" id="star3-4" name="rating-4" value="3" />
-                <label for="star3-4"></label>
-                <input type="radio" id="star2-4" name="rating-4" value="2" />
-                <label for="star2-4"></label>
-                <input type="radio" id="star1-4" name="rating-4" value="1" />
-                <label for="star1-4"></label>
-              </div>
-              <p id="average-rating">Promedio de valoración: </p>
-              <br><br>
-              <a href="#" class="boton-comprar">Comprar</a>
-            </div>
-          </div>
+          {% endfor %}
         </div>
+      </div>
+      
       </div>
 {% endblock body %}
 
