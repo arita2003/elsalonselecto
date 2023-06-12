@@ -25,7 +25,7 @@ class Comida(models.Model):
     ingredientes = models.TextField()
     foto = models.ImageField(upload_to='comida')
     precio = models.IntegerField(default=0)
-    especial = models.BooleanField()
+    especial = models.BooleanField(default=False)
     
     def __str__(self):
         return self.nombre
