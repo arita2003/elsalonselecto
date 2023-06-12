@@ -615,30 +615,32 @@
       <!-- Inicio videos-->
       <div class="menu">
         {% for comida in comida %}
-        <div class="platillo">
-          <img src="{{ comida.foto.url }}" alt="Platillo {{ forloop.counter }}">
-          <div class="overlay"></div>
-          <div class="informacion">
-            <h2>{{ comida.nombre }}</h2>
-            <p>{{ comida.descripcion }}</p>
-            <div class="precio">${{ comida.precio }}</div>
-            <div class="rating">
-              <input type="radio" id="star5-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="5" />
-              <label for="star5-{{ forloop.counter }}"></label>
-              <input type="radio" id="star4-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="4" />
-              <label for="star4-{{ forloop.counter }}"></label>
-              <input type="radio" id="star3-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="3" />
-              <label for="star3-{{ forloop.counter }}"></label>
-              <input type="radio" id="star2-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="2" />
-              <label for="star2-{{ forloop.counter }}"></label>
-              <input type="radio" id="star1-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="1" />
-              <label for="star1-{{ forloop.counter }}"></label>
+          {% if comida.especial %}
+            <div class="platillo">
+              <img src="{{ comida.foto.url }}" alt="Platillo {{ forloop.counter }}">
+              <div class="overlay"></div>
+              <div class="informacion">
+                <h2>{{ comida.nombre }}</h2>
+                <p>{{ comida.descripcion }}</p>
+                <div class="precio">${{ comida.precio }}</div>
+                <div class="rating">
+                  <input type="radio" id="star5-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="5" />
+                  <label for="star5-{{ forloop.counter }}"></label>
+                  <input type="radio" id="star4-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="4" />
+                  <label for="star4-{{ forloop.counter }}"></label>
+                  <input type="radio" id="star3-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="3" />
+                  <label for="star3-{{ forloop.counter }}"></label>
+                  <input type="radio" id="star2-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="2" />
+                  <label for="star2-{{ forloop.counter }}"></label>
+                  <input type="radio" id="star1-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="1" />
+                  <label for="star1-{{ forloop.counter }}"></label>
+                </div>
+                <p id="average-rating">Promedio de valoración: </p>
+                <br><br>
+                <a href="#" class="boton-comprar">Comprar</a>
+              </div>
             </div>
-            <p id="average-rating">Promedio de valoración: </p>
-            <br><br>
-            <a href="#" class="boton-comprar">Comprar</a>
-          </div>
-        </div>
+          {% endif %}
         {% endfor %}
       </div>
       </div>
