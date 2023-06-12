@@ -614,104 +614,33 @@
       <div class="small-header anim" style="--delay: .3s">Platillos Especiales</div>
       <!-- Inicio videos-->
       <div class="menu">
+        {% for comida in comida %}
         <div class="platillo">
-          <video source src="{% static 'menu/img/carne.mp4' %}" autoplay muted loop></video>
+          <img src="{{ comida.foto.url }}" alt="Platillo {{ forloop.counter }}">
           <div class="overlay"></div>
           <div class="informacion">
-            <h2>Filete de res con rúcula</h2>
-            <p>La carne de res más jugosa y tierna</p>
-            <div class="precio">$8.500</div>
+            <h2>{{ comida.nombre }}</h2>
+            <p>{{ comida.descripcion }}</p>
+            <div class="precio">${{ comida.precio }}</div>
             <div class="rating">
-              <input type="radio" id="star5-1" name="rating-1" value="5" />
-              <label for="star5-1"></label>
-              <input type="radio" id="star4-1" name="rating-1" value="4" />
-              <label for="star4-1"></label>
-              <input type="radio" id="star3-1" name="rating-1" value="3" />
-              <label for="star3-1"></label>
-              <input type="radio" id="star2-1" name="rating-1" value="2" />
-              <label for="star2-1"></label>
-              <input type="radio" id="star1-1" name="rating-1" value="1" />
-              <label for="star1-1"></label>
-            </div>
-            <p id="average-rating">Promedio de valoración: </p>
-            <br>
-            <br>
-            <a href="#" class="boton-comprar">Comprar</a>
-          </div>
-        </div>
-        <div class="platillo">
-            <video source src="{% static 'menu/img/salsa.mp4' %}" autoplay muted loop></video>
-          <div class="overlay"></div>
-          <div class="informacion">
-            <h2>budin de carne</h2>
-            <p>Budin de carne con rica salsa.</p>
-            <div class="precio">$10.000</div>
-            <div class="rating">
-              <input type="radio" id="star5-2" name="rating-2" value="5" />
-              <label for="star5-2"></label>
-              <input type="radio" id="star4-2" name="rating-2" value="4" />
-              <label for="star4-2"></label>
-              <input type="radio" id="star3-2" name="rating-2" value="3" />
-              <label for="star3-2"></label>
-              <input type="radio" id="star2-2" name="rating-2" value="2" />
-              <label for="star2-2"></label>
-              <input type="radio" id="star1-2" name="rating-2" value="1" />
-              <label for="star1-2"></label>
-            </div>
-            <p id="average-rating">Promedio de valoración: </p>
-            <br>
-            <br>
-            <a href="#" class="boton-comprar">Comprar</a>
-          </div>
-        </div>
-        <div class="platillo">
-          <video source src="{% static 'menu/img/ensalada.mp4' %}" autoplay muted loop></video>
-          <div class="overlay"></div>
-          <div class="informacion">
-            <h2>Ensalada de frutas </h2>
-            <p>Ensalda frutal con salsa de chocolate.</p>
-            <div class="precio">$10.000</div>
-            <div class="rating">
-              <input type="radio" id="star5-3" name="rating-3" value="5" />
-              <label for="star5-3"></label>
-              <input type="radio" id="star4-3" name="rating-3" value="4" />
-              <label for="star4-3"></label>
-              <input type="radio" id="star3-3" name="rating-3" value="3" />
-              <label for="star3-3"></label>
-              <input type="radio" id="star2-3" name="rating-3" value="2" />
-              <label for="star2-3"></label>
-              <input type="radio" id="star1-3" name="rating-3" value="1" />
-              <label for="star1-3"></label>
+              <input type="radio" id="star5-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="5" />
+              <label for="star5-{{ forloop.counter }}"></label>
+              <input type="radio" id="star4-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="4" />
+              <label for="star4-{{ forloop.counter }}"></label>
+              <input type="radio" id="star3-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="3" />
+              <label for="star3-{{ forloop.counter }}"></label>
+              <input type="radio" id="star2-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="2" />
+              <label for="star2-{{ forloop.counter }}"></label>
+              <input type="radio" id="star1-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="1" />
+              <label for="star1-{{ forloop.counter }}"></label>
             </div>
             <p id="average-rating">Promedio de valoración: </p>
             <br><br>
             <a href="#" class="boton-comprar">Comprar</a>
           </div>
         </div>
-        <div class="platillo">
-          <video source src="{% static 'menu/img/fideos.mp4' %}" autoplay muted loop></video>
-          <div class="overlay"></div>
-          <div class="informacion">
-            <h2>Pasta</h2>
-            <p>Fideos con albondigas caseras.</p>
-            <div class="precio">$10.000</div>
-            <div class="rating">
-              <input type="radio" id="star5-4" name="rating-4" value="5" />
-              <label for="star5-4"></label>
-              <input type="radio" id="star4-4" name="rating-4" value="4" />
-              <label for="star4-4"></label>
-              <input type="radio" id="star3-4" name="rating-4" value="3" />
-              <label for="star3-4"></label>
-              <input type="radio" id="star2-4" name="rating-4" value="2" />
-              <label for="star2-4"></label>
-              <input type="radio" id="star1-4" name="rating-4" value="1" />
-              <label for="star1-4"></label>
-            </div>
-            <p id="average-rating">Promedio de valoración: </p>
-            <br><br>
-            <a href="#" class="boton-comprar">Comprar</a>
-          </div>
-        </div>
+        {% endfor %}
+      </div>
       </div>
       <!--Fin videos-->
     </div>
