@@ -615,7 +615,7 @@
       <!-- Inicio videos-->
       <div class="menu">
         {% for comida in comida %}
-          {% if comida.especial %}
+          {% if comida.especial == True %}
             <div class="platillo">
               <img src="{{ comida.foto.url }}" alt="Platillo {{ forloop.counter }}">
               <div class="overlay"></div>
@@ -643,6 +643,7 @@
           {% endif %}
         {% endfor %}
       </div>
+      
       </div>
       <!--Fin videos-->
     </div>
