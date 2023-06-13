@@ -70,6 +70,12 @@ def platillos(request):
     context = {'comida': comidas}
     return render(request, 'menu/platillos.html', context)
 
+def entorno(request):
+    comidas = Comida.objects.filter(especial=True)
+    context = {'comida': comidas}
+    return render(request, 'menu/entorno.html', context)
+
+
 def eliminar_platillos(request):
     platillos = Comida.objects.all()
     context = {
