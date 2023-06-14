@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 @csrf_exempt
 @api_view(['GET', 'POST'])
 @permission_classes((IsAuthenticated))   
-
+@api_view(['GET', 'PUT', 'DELETE'])
 def datos_direccion(request):
 
     """
@@ -42,3 +42,25 @@ def datos_direccion(request):
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+def detalle_direccion (request,id):
+    """
+    get update, o delete
+    """
+    try:
+        direccion=Direccion.objects.get(id_direccion=id)
+    except Direccion.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method=='GET':
+        serializer=direccionSerializer(direccion)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = direccionSerializer(direccion, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response (serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DElETE':
+        direccion.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
