@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Usuario,Comida
-
+from django.core.mail import send_mail
+from django.conf import settings
+from random import randint
 
 # Create your views here.
 def index(request):
@@ -125,5 +127,59 @@ def validacion_nuevo_usuario(request):
 def nosotros(request):
     return render(request,'menu/nosotros.html')
 
+
+def enviar_codigo_correo(email):
+    codigo = f'{randint(1000, 9999)}-{randint(1000, 9999)}'
+    mensaje = f'Tu código de validación es: {codigo}'
+    send_mail(
+        'Código de validación',
+        mensaje,
+        settings.DEFAULT_FROM_EMAIL,
+        [email],
+        fail_silently=False,
+    )
+    return codigo
+
+
+def validar_codigo_correo(request):
+    if request.method == 'POST':
+        codigo_ingresado = request.POST.get('codigo_correo_nuevo_usuario')
+        email = request.session.get('email')
+
+        if codigo_ingresado == request.session.get('codigo_correo'):
+            # El código de validación es correcto
+            request.session['codigo_validado'] = True
+            return redirect('crearnombre')
+        else:
+            # El código de validación es incorrecto
+            error_message = 'Código de validación incorrecto'
+            return render(request, 'val_nuevo_usuario.html', {'error_message': error_message})
+
+    # Si el método de solicitud no es POST, redirige a la página anterior
+    return redirect('validacion_nuevo_usuario')
+
 def crearnombre(request):
-    return render(request,'menu/crearnombre.html')
+    if not request.session.get('codigo_validado'):
+        return redirect('verificacion')
+
+    if request.method == 'POST':
+        correo = request.POST['correo']
+        contraseña = request.POST['contraseña']
+        nombre = request.POST['nombre']
+        telefono = request.POST['telefono']
+        direccion = request.POST['direccion']
+
+        # Crear un nuevo usuario en la base de datos
+        nuevo_usuario = Usuario(
+            correo=correo,
+            contraseña=contraseña,
+            nombre=nombre,
+            telefono=telefono,
+            direccion_id=direccion
+        )
+        nuevo_usuario.save()
+
+        return redirect('inicio')
+
+    return render(request, 'crearnombre.html')
+
