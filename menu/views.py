@@ -127,18 +127,24 @@ def validacion_nuevo_usuario(request):
 def nosotros(request):
     return render(request,'menu/nosotros.html')
 
+#enviar codigo correo
+def register(request):
+    if request.method == 'POST':
+        if request.POST.get('action') == 'send_code':
+            email = request.POST.get('email')
+            codigo = f'{randint(1000, 9999)}-{randint(1000, 9999)}'
+            mensaje = f'Tu código de validación es: {codigo}'
+            send_mail(
+                'Código de validación',
+                mensaje,
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+                fail_silently=False,
+            )
+            return redirect('val_nuevo_usuario.html')
 
-def enviar_codigo_correo(email):
-    codigo = f'{randint(1000, 9999)}-{randint(1000, 9999)}'
-    mensaje = f'Tu código de validación es: {codigo}'
-    send_mail(
-        'Código de validación',
-        mensaje,
-        settings.DEFAULT_FROM_EMAIL,
-        [email],
-        fail_silently=False,
-    )
-    return codigo
+    return render(request, 'index.html')
+
 
 
 def validar_codigo_correo(request):
