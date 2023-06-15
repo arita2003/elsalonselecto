@@ -141,27 +141,32 @@ def register(request):
                 [email],
                 fail_silently=False,
             )
-            return redirect('val_nuevo_usuario.html')
+            request.session['codigo_correo'] = codigo
+            request.session['email'] = email
+            return redirect('val_nuevo_usuario')
+
     return render(request, 'index.html')
 
 
 
-def validar_codigo_correo(request):
+def val_nuevo_usuario(request):
     if request.method == 'POST':
         codigo_ingresado = request.POST.get('codigo_correo_nuevo_usuario')
         email = request.session.get('email')
+        codigo_correo = request.session.get('codigo_correo')
 
-        if codigo_ingresado == request.session.get('codigo_correo'):
+        if codigo_ingresado == codigo_correo:
             # El código de validación es correcto
             request.session['codigo_validado'] = True
-            return redirect('crearnombre')
+            return redirect('pas_nuevo_usuario.html')
         else:
             # El código de validación es incorrecto
             error_message = 'Código de validación incorrecto'
             return render(request, 'val_nuevo_usuario.html', {'error_message': error_message})
 
     # Si el método de solicitud no es POST, redirige a la página anterior
-    return redirect('validacion_nuevo_usuario')
+    return redirect('index.html')
+
 
 def crearnombre(request):
     if not request.session.get('codigo_validado'):
