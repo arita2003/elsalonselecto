@@ -127,7 +127,7 @@ def validacion_nuevo_usuario(request):
 def nosotros(request):
     return render(request,'menu/nosotros.html')
 
-#enviar codigo correo
+
 def register(request):
     if request.method == 'POST':
         if request.POST.get('action') == 'send_code':
@@ -142,7 +142,6 @@ def register(request):
                 fail_silently=False,
             )
             return redirect('val_nuevo_usuario.html')
-
     return render(request, 'index.html')
 
 
