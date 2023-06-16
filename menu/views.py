@@ -30,6 +30,7 @@ def login(request):
     response = render(request, 'index.html', {'error_message': error_message})
     response.delete_cookie('error_message')
     return response
+"""
 
 def register(request):
     if request.method == 'POST':
@@ -39,6 +40,8 @@ def register(request):
         
         
     return render(request, 'index.html')
+"""
+
 
 
 
@@ -111,7 +114,7 @@ def val_nuevo_usuario(request):
     return render(request,'menu/val_nuevo_usuario.html')
 
 
-
+"""
 def validacion_nuevo_usuario(request):
     
     if request.method == 'POST':
@@ -121,6 +124,8 @@ def validacion_nuevo_usuario(request):
         
         
     return render(request, 'val_nuevo_usuario.html')
+"""
+
 
 
 
@@ -130,6 +135,7 @@ def nosotros(request):
 
 def register(request):
     if request.method == 'POST':
+        print("1111111111111")
         if request.POST.get('action') == 'send_code':
             email = request.POST.get('email')
             codigo = f'{randint(1000, 9999)}-{randint(1000, 9999)}'
@@ -144,12 +150,12 @@ def register(request):
             request.session['codigo_correo'] = codigo
             request.session['email'] = email
             return redirect('val_nuevo_usuario')
+        
+        return render(request, 'menu/index.html')
 
-    return render(request, 'index.html')
 
 
-
-def val_nuevo_usuario(request):
+def validacion_nuevo_usuario(request):
     if request.method == 'POST':
         codigo_ingresado = request.POST.get('codigo_correo_nuevo_usuario')
         email = request.session.get('email')
@@ -158,14 +164,14 @@ def val_nuevo_usuario(request):
         if codigo_ingresado == codigo_correo:
             # El código de validación es correcto
             request.session['codigo_validado'] = True
-            return redirect('pas_nuevo_usuario.html')
+            return redirect('pas_nuevo_usuario')
         else:
             # El código de validación es incorrecto
             error_message = 'Código de validación incorrecto'
             return render(request, 'val_nuevo_usuario.html', {'error_message': error_message})
-
-    # Si el método de solicitud no es POST, redirige a la página anterior
-    return redirect('index.html')
+    else:
+        # Si el método de solicitud no es POST, redirige a la página anterior
+        return redirect('val_nuevo_usuario')
 
 
 def crearnombre(request):
