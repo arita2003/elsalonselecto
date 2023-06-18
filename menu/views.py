@@ -4,7 +4,7 @@ from .models import Usuario,Comida
 from django.core.mail import send_mail
 from django.conf import settings
 from random import randint
-
+from django.contrib import messages
 # Create your views here.
 def index(request):
     return render(request,'menu/index.html')
@@ -68,6 +68,7 @@ def carrito(request):
     return render(request,'menu/carrito.html')
 
 def agregar_platillos(request):
+    
     return render(request,'menu/agregar_platillos.html')
 
 def platillos(request):
