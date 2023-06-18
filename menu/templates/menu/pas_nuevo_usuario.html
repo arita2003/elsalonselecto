@@ -44,7 +44,7 @@
                 <input type="password" placeholder="Confirmar contraseña" name="confi-contraseña" id="confi-contraseña" minlength="10"
                     maxlength="14" onkeydown="validarInput(event)" required />
             </div>
-            <button type="submit" formaction="{% url 'crearnombre' %}" onclick="return compararContraseñas()">Aceptar</button>
+            <button type="submit" formaction="{% url 'crearnombreusuario' %}" onclick="return compararContraseñas()">Aceptar</button>
             <p id="mensaje-error"></p>
         </form>
         

@@ -26,4 +26,5 @@ urlpatterns = [
     path('val_nuevo_usuario.html', val_nuevo_usuario, name="val_nuevo_usuario"),
     path('nosotros.html', nosotros, name="nosotros"),
     path('crearnombre.html', crearnombre, name="crearnombre"),
+    path('crearnombreusuario/', views.crearnombreusuario, name="crearnombreusuario")
 ]
