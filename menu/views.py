@@ -104,12 +104,12 @@ def crearnombre(request):
 def mi_formulario(request):
     if request.method == 'POST':
         # Procesar los datos enviados por el formulario
-        contraseña = request.POST.get('contraseña')
-        confi_contraseña = request.POST.get('confi-contraseña')
+        contrasena = request.POST.get('contraseña')
+        confi_contrasena = request.POST.get('confi-contraseña')
         
-        return render(request, 'crearnombre.html')
+        return render(request, 'menu/crearnombre.html')
     else:
-        return render(request, 'pas_nuevo_usuario.html')
+        return render(request, 'menu/pas_nuevo_usuario.html')
 
 
 
@@ -179,25 +179,22 @@ def validacion_nuevo_usuario(request):
 
 def crearnombreusuario(request):
     if not request.session.get('codigo_validado'):
-        return redirect('verificacion')
+        return redirect('index')
 
     if request.method == 'POST':
-        correo = request.POST['correo']
-        contrasena = request.POST['contraseña']
+        
         nombre = request.POST['nombre']
         telefono = request.POST['telefono']
         direccion = request.POST['direccion']
 
         # Crear un nuevo usuario en la base de datos
         nuevo_usuario = Usuario(
-            correousuario=correo,
-            contrasenausuario=contrasena,
             nombreusuario=nombre,
             telefonousuario=telefono,
-            direccion_id=direccion
+            direccion_id=direccion,
         )
         nuevo_usuario.save()
 
-        return redirect('inicio')
-
-    return render(request, 'menu/crearnombre.html')
+        return redirect('entorno')
+    else:
+        return render(request, 'menu/index.html')

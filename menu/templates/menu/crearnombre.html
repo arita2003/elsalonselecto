@@ -32,15 +32,15 @@
 {% block body %}
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="{% url 'crearnombreusuario' %}">
             <div class="input-container">
                 <span>Crear nombre de usuario.</span>
-                <input type="text" placeholder="Nombre  de usuario" pattern="[a-zA-Z0-9.]*" id="nombre" required />
+                <input type="text" placeholder="Nombre de usuario" pattern="[a-zA-Z0-9.]*" id="nombre" required />
                 <input type="tel" placeholder="numero  " pattern="^\+[1-9]\d{10}$" id="numero" required />
                 <span class="error-message" style="display: none;">El número debe estar en formato +XXXXXXXXXXX.</span>
                 <textarea placeholder="direccion" maxlength="200" id="direccion" required></textarea>
             </div>
-            <button type="submit" formaction="entorno.html">Confirmar</button>
+            <button type="submit" formaction="{% url 'crearnombreusuario' %}">Confirmar</button>
         </form>
     </div>
 </div>
