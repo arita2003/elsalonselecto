@@ -91,9 +91,33 @@
       {% block javascript %}
           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script src="{% static 'menu/js/confirmacion.js' %}"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const agregarBtn = document.getElementById('agregarBtn');
+              agregarBtn.addEventListener('click', function (event) {
+                event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+                const nombrePlatillo = document.getElementById('nombre_platillo').value;
+                const descripcionPlatillo = document.getElementById('descripcion_platillo').value;
+
+                if (nombrePlatillo && descripcionPlatillo) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Platillo agregado',
+                    text: 'El platillo ha sido agregado exitosamente.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar'
+                  }).then(function(result) {
+                    if (result.isConfirmed) {
+                      document.getElementById('formulario').submit(); // Envío automático del formulario
+                    }
+                  });
+                }
+              });
+            });
+          </script>
       {% endblock %}
       
-      <form action="#" method="POST" enctype="multipart/form-data">
+      <form id="formulario" action="#" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="Informacion-del-Usuario">
           <div class="input-box">
@@ -121,7 +145,7 @@
           {{ forms.as_table }}
         </table>
         <div class="button">
-          <input type="submit" value="Agregar" oneclick="confirmarplatillo">
+          <input id="agregarBtn" type="submit" value="Agregar">
         </div>
       </form>
     </div>
