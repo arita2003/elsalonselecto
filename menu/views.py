@@ -30,6 +30,7 @@ def login(request):
     response = render(request, 'index.html', {'error_message': error_message})
     response.delete_cookie('error_message')
     return response
+
 """
 
 def register(request):
@@ -41,8 +42,6 @@ def register(request):
         
     return render(request, 'index.html')
 """
-
-
 
 
 
@@ -58,14 +57,13 @@ def recuperacion2(request):
 def recuperacion3(request):
     return render(request,'menu/recuperacion3.html')
 
-
-def carrito(request):
-    return render(request,'menu/carrito.html')
-
 def form(request):
     return render(request,'menu/form.html')
+
 def carrito(request):
-    return render(request,'menu/carrito.html')
+    comidas = Comida.objects.all()
+    context = {'comidas': comidas}
+    return render(request, 'menu/carrito.html', context)
 
 def agregar_platillos(request):
     
@@ -155,7 +153,6 @@ def register(request):
             return redirect('val_nuevo_usuario')
         
         return render(request, 'menu/index.html')
-
 
 
 def validacion_nuevo_usuario(request):

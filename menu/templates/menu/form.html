@@ -86,39 +86,181 @@
     </div>
     <div class="main-container">
       <div class="title">Registro método de pago</div>
-      <form action="#" method="POST">
-          {% csrf_token %}
-          <div class="Informacion-del-Usuario">
-              <div class="input-box">
-                  <label for="rut">Rut</label>
-                  <input type="number" id="rut" name="rut" placeholder="Ingresa tu Rut" required>
-              </div>
-              <div class="input-box">
-                  <label for="nombre_titular">Nombre del titular</label>
-                  <input type="text" id="nombre_titular" name="nombre_titular" placeholder="Ingresa el Nombre del Titular" required>
-              </div>
-              <div class="input-box">
-                  <label for="numero_tarjeta">Número de la tarjeta</label>
-                  <input type="number" id="numero_tarjeta" name="numero_tarjeta" placeholder="Ingresa el Número de la Tarjeta" required>
-              </div>
-              <div class="input-box">
-                  <label for="fecha_vencimiento">Fecha de Vencimiento</label>
-                  <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" placeholder="Ingresa la Fecha de Vencimiento" required>
-              </div>
-              <div class="input-box">
-                  <label for="codigo_seguridad">Código de seguridad</label>
-                  <input type="number" id="codigo_seguridad" name="codigo_seguridad" placeholder="Ingresa el Código de Seguridad" required>
-              </div>
-          </div>
-          <div class="button">
-              <input type="submit" value="Registrar">
-          </div>
-      </form>
-  </div>
-{% endblock body %}
     
-{% block script %}
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
-<script src="{% static 'menu\js\script_entorno.js' %}"></script>
-{% endblock script %}
+      {% load static %}
+    
+      {% block javascript %}
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        function validateForm(event) {
+          event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+    
+          var rut = document.getElementById("rut").value;
+          var nombreTitular = document.getElementById("nombre_titular").value;
+          var numeroTarjeta = document.getElementById("numero_tarjeta").value;
+          var fechaVencimiento = document.getElementById("fecha_vencimiento").value;
+          var codigoSeguridad = document.getElementById("codigo_seguridad").value;
+    
+          if (rut === '' || nombreTitular === '' || numeroTarjeta === '' || fechaVencimiento === '' || codigoSeguridad === '') {
+            Swal.fire({
+              icon: 'error',
+              title: 'Campos incompletos',
+              text: 'Por favor, complete todos los campos del formulario.'
+            });
+            return false;
+          }
+    
+          // Validar el formato del código de seguridad
+          if (!/^\d{3}$/.test(codigoSeguridad)) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Código de seguridad inválido',
+              text: 'Por favor, ingrese un código de seguridad válido de tres dígitos.'
+            });
+            return false;
+          }
+    
+          // Obtener la fecha de hoy
+          var fechaHoy = new Date();
+          fechaHoy.setHours(0, 0, 0, 0); // Establecer la hora a las 00:00:00
+    
+          // Convertir la fecha de vencimiento a objeto de fecha
+          var fechaVencimientoObj = new Date(fechaVencimiento);
+    
+          // Validar la fecha de vencimiento
+          if (fechaVencimientoObj <= fechaHoy) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Tarjeta vencida',
+              text: 'No se puede registrar una tarjeta vencida.'
+            });
+            return false;
+          }
+    
+          // Aquí puedes agregar cualquier otra validación adicional si es necesario
+    
+          // Si se llega a este punto, el formulario es válido y se puede enviar
+          Swal.fire({
+            icon: 'success',
+            title: 'Tarjeta registrada',
+            text: 'La tarjeta se ha registrado con éxito.',
+            confirmButtonText: 'Continuar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Si se hace clic en el botón "Continuar", se envía el formulario
+              event.target.submit();
+            }
+          });
+    
+          return true;
+        }
+      </script>
+      {% endblock %}
+    
+      <form action="#" method="POST" onsubmit="return validateForm(event)">
+        {% csrf_token %}
+        <div class="Informacion-del-Usuario">
+          <div class="input-box">
+            <label for="rut">Rut</label>
+            <input type="number" id="rut" name="rut" placeholder="Ingresa tu Rut" required>
+          </div>
+          <div class="input-box">
+            <label for="nombre_titular">Nombre del titular</label>
+            <input type="text" id="nombre_titular" name="nombre_titular" placeholder="Ingresa el Nombre del Titular" required>
+          </div>
+          <div class="input-box">
+            <label for="numero_tarjeta">Número de la tarjeta</label>
+            <input type="number" id="numero_tarjeta" name="numero_tarjeta" placeholder="Ingresa el Número de la Tarjeta" required>
+          </div>
+          <div class="input-box">
+            <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+            <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" placeholder="Ingresa la Fecha de Vencimiento" required>
+          </div>
+          <div class="input-box">
+            <label for="codigo_seguridad">Código de seguridad</label>
+            <input type="number" id="codigo_seguridad" name="codigo_seguridad" placeholder="Ingresa el Código de Seguridad" required>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Registrar">
+        </div>
+      </form>
+    </div>
+    {% endblock body %}
+    
+    {% block script %}
+    <script>
+      async function validarRut(rut) {
+        const url = `https://api.sii.cl/recursos/v1/ruts/${rut}`;
+        const response = await fetch(url);
+    
+        if (response.status === 200) {
+          const data = await response.json();
+    
+          if (data && data.valido) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+      
+      function validarFormulario() {
+        var rut = document.getElementById("rut").value;
+        var nombreTitular = document.getElementById("nombre_titular").value;
+        var numeroTarjeta = document.getElementById("numero_tarjeta").value;
+        var fechaVencimiento = document.getElementById("fecha_vencimiento").value;
+        var codigoSeguridad = document.getElementById("codigo_seguridad").value;
+    
+        if (!/^(\d{1,8})-?([\dkK])$/.test(rut)) {
+          alert("Por favor, ingresa un RUT válido.");
+          return false;
+        }
+    
+        // Validar el RUT utilizando el SII
+        validarRut(rut)
+          .then((valido) => {
+            if (!valido) {
+              alert("El RUT no existe o es inválido.");
+              return false;
+            } else {
+              // Validar el formato del código de seguridad
+              if (!/^\d{3}$/.test(codigoSeguridad)) {
+                alert("Por favor, ingresa un código de seguridad válido de tres dígitos.");
+                return false;
+              }
+    
+              // Obtener la fecha de hoy
+              var fechaHoy = new Date();
+              fechaHoy.setHours(0, 0, 0, 0); // Establecer la hora a las 00:00:00
+    
+              // Convertir la fecha de vencimiento a objeto de fecha
+              var fechaVencimientoObj = new Date(fechaVencimiento);
+    
+              // Validar la fecha de vencimiento
+              if (fechaVencimientoObj <= fechaHoy) {
+                alert("La fecha de vencimiento debe ser posterior a la fecha actual.");
+                return false;
+              }
+    
+              // Resto de la lógica para enviar el formulario o realizar otras acciones
+              // ...
+            }
+          })
+          .catch((error) => {
+            alert("Error al validar el RUT.");
+            return false;
+          });
+    
+        // Si llega a este punto, significa que todas las validaciones han pasado
+        // Se puede enviar el formulario
+        return true;
+      }
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
+    <script src="{% static 'menu\js\script_entorno.js' %}"></script>
+    {% endblock script %}
+    

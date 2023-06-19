@@ -86,6 +86,7 @@
     </div>
     <div class="main-container">
       <div class="title">Eliminar platillo</div>
+      
       {% load static %}
 
       {% block javascript %}
@@ -98,7 +99,6 @@
                 button.addEventListener('click', function (event) {
                   event.preventDefault(); // Evitar el comportamiento predeterminado del botón
                   const form = button.closest('form');
-                  
                   Swal.fire({
                     icon: 'success',
                     title: 'Platillo eliminado',
@@ -114,9 +114,9 @@
               });
             });
           </script>
-          </script>
       {% endblock %}
-      <form id="formulario1" action="#">
+
+      <form action="#">
         <div class="Informacion-del-Usuario">
           <div class="product-list">
             {% for platillo in platillos %}

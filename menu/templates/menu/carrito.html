@@ -86,48 +86,53 @@
     </div>
     <div class="main-container">
       <div class="title">Carrito de Compras</div><br>
-          <div class="cart-item">
-              <img class="comida" src="{% static 'menu/img/sushi.jpg' %}" alt="Product Name">
-              <div class="cart-item-details">
-                <h3>Sushi</h3>
-                <p class="price">Precio: 20.000</p>
-                <div class="quantity">
-                  <label for="qty">Cantidad:</label>
-                  <input type="number" id="qty" name="quantity" min="1" value="1">
-                </div>
-                <p class="subtotal">Subtotal: $20.500</p>
-              </div>
 
-              <img class="comida" src="{% static 'menu/img/ratatouille.jpg' %}" alt="Product Name">
-              <div class="cart-item-details">
-              <h3>Ratatouille</h3>
-              <p class="price">Precio: 15.000</p>
-              <div class="quantity">
-                  <label for="qty">Cantidad:</label>
-                  <input type="number" id="qty" name="quantity" min="1" value="1">
-              </div>
-              <p class="subtotal">Subtotal: $15.500</p>
-              </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const pagarBtn = document.getElementById('pagarBtn');
+          pagarBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+      
+            Swal.fire({
+              icon: 'success',
+              title: 'Pago exitoso',
+              text: 'El pago ha sido exitoso.',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Aceptar'
+            }).then(function(result) {
+              if (result.isConfirmed) {
+                document.getElementById('formulario').submit(); // Envío automático del formulario
+              }
+            });
+          });
+        });
+      </script>
 
-              <img class="comida" src="{% static 'menu/img/caviarjpg.jpg' %}" alt="Product Name">
-              <div class="cart-item-details">
-              <h3>Caviar</h3>
-              <p class="price">Precio: 45.000</p>
-              <div class="quantity">
-                  <label for="qty">Cantidad:</label>
-                  <input type="number" id="qty" name="quantity" min="1" value="1">
-              </div>
-              <p class="subtotal">Subtotal: $45.500</p>
-              </div>
+    <div class="cart-item">
+      {% for comida in comidas %}
+        <div class="cart-item-details">
+          <img class="comida" src="{{ comida.foto.url }}" alt="{{ comida.nombre }}">
+          <h3>{{ comida.nombre }}</h3>
+          <p class="price">Precio: {{ comida.precio }}</p>
+          <div class="quantity">
+            <label for="qty">Cantidad:</label>
+            <input type="number" id="qty" name="quantity" min="1" value="1">
           </div>
-          <div class="button">
-            <input type="submit" value="Pagar"> 
-      </div>
-</div>
+          <p class="subtotal">Subtotal: ${{ comida.precio }}</p>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="button">
+      <input id="pagarBtn" type="submit" value="Pagar"> 
+    </div>
 {% endblock body %}
 
 {% block script %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
 <script src="{% static 'menu\js\script_entorno.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
 {% endblock script %}
